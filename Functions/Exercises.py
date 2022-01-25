@@ -109,6 +109,30 @@ def summer_69_powered(arr):
     else:
         return 0
 
+def spy_game(nums):
+    my_strings= ''
+    for i in nums:
+        my_strings += str(i)
+    if '007' in my_strings:
+        return True
+    return False
+#This can be done in one line of code: return '007' in ''.join(str(i) for i in arr)
+
+def count_primes(num):
+    primes = [2]
+    x = 3
+    if num < 2:
+        return 0
+    while x <= num:
+        for y in range(3, x, 2):
+            if x % y == 0:
+                x += 2
+                break
+        else:
+            primes.append(x)
+            x += 2
+    return len(primes)
+
 string1 = 'Levelheaded Llama'
 string2 = 'Crazy Kangaroo'
 
@@ -142,6 +166,12 @@ print(blackjack(9,9,11))
 print(summer_69([1, 3, 5]))
 print(summer_69([4, 5, 6, 7, 8, 9]))
 print(summer_69([2, 1, 6, 9, 11]))
+
+print(spy_game([1,2,4,0,0,7,5]))
+print(spy_game([1,0,2,4,0,5,7]))
+print(spy_game([1,7,2,0,4,5,0]))
+
+print(count_primes(100))
 
 print('##############################')
 
