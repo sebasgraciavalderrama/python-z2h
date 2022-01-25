@@ -74,8 +74,8 @@ def ispangram_powered(str1, alphabet=string.ascii_lowercase):
 
 
 
-print(ispangram_powered('The quick brown fox jumps over the lazy dog'))
+print(ispangram_powered('The quick brown fox jumps over the lazy dog')) #True
 
-print(ispangram_powered('Glib jocks quiz nymph to vex dwarf'))
+print(ispangram_powered('Glib jocks quiz nymph to vex dwarf')) # True
 
-print(ispangram_powered('aaaaiiiihhh ss'))
+print(ispangram_powered('aaaaiiiihhh ss')) # False
