@@ -1,6 +1,6 @@
-tictactoe_board = [[1,2,3],
-                   [4,'X',6],
-                   [7,8,9]]
+tictactoe_board = [['1','2','3'],
+                   ['4','O','6'],
+                   ['7','8','9']]
 
 def win(*args): # check if any player won after inserting a 'X' or 'O' in the board
     pass
@@ -15,30 +15,24 @@ def who_goes_first(): # Define who goes firts: 'X' or 'O'
         if decision in ('X', 'O'):
             return decision
 
-
-def insert_player_choice (tictactoe_board, player_choice, player): # Change board position to 'X' or 'O'
-    i, j = get_index_of_player_choice(tictactoe_board, 11)
-    print(f' {i} {j}')
-    if tictactoe_board[i][j] in ('X', 'O'):
-        print('Position already taken, please try a different position!!!')
+def insert_player_choice (tictactoe_board, player_choice, player = ''): # Change board position to 'X' or 'O'
+    my_tuple = get_index_of_player_choice(tictactoe_board, player_choice)
+    if my_tuple == (-1,-1):
+        print('Could not insert player choice, position already taken!')
         print_board(tictactoe_board)
         return False
-    elif tictactoe_board[i][j] not in ('X', 'O'):
-        tictactoe_board[i][j] = player.upper()
-        print_board(tictactoe_board)
-        return True
+    (i, j) = my_tuple
+    tictactoe_board[i][j] = player.upper()
+    print('Position changed successfully!')
+    print_board(tictactoe_board)
+    return True
 
 
 def get_index_of_player_choice(tictactoe_board, player_choice):
-    if player_choice not in range(0,10):
-        return 'Please enter a valid position (1-9)!!!'
-    for i in range(len(tictactoe_board)):
-      try:
-            j = tictactoe_board[i].index(player_choice)
-            return (i,j)
-      except ValueError:
-          pass
-    raise ValueError
+    for i, item in enumerate(tictactoe_board):
+        if player_choice in item:
+            return i, item.index(player_choice)
+    return -1,-1
 
 
 def print_board(tictactoe_board): # Print board after any update (instert, win, etc)
@@ -46,4 +40,17 @@ def print_board(tictactoe_board): # Print board after any update (instert, win, 
         print(" ".join(map(str, item)))
 
 
-print(insert_player_choice(tictactoe_board, 11,'x'))
+print(insert_player_choice(tictactoe_board, '2', 'X'))
+
+'''
+player_turn = False
+player_choice = input('Where would you like to place your symbol?: ')
+anybody_won = False
+while not anybody_won:
+    if player_turn == False:
+        insert_player_choice(tictactoe_board, player_choice, 'X')
+        anybody_won = win
+    else:
+        insert_player_choice(tictactoe_board, player_choice, 'O')
+        anybody_won = win
+'''
