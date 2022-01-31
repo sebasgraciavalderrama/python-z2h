@@ -3,7 +3,7 @@ tictactoe_board = [['1','2','3'],
                    ['7','8','9']]
 
 def win(*args): # check if any player won after inserting a 'X' or 'O' in the board
-    pass
+    return True
 
 def position_available(*args): # Given a position on the board, check if that position is available to be inserted or if its already taken
     return any (args in x for x in tictactoe_board)
@@ -34,7 +34,7 @@ def get_index_of_player_choice(tictactoe_board, player_choice):
             return i, item.index(player_choice)
     return -1,-1
 
-
+#-----------------------------------------MAIN SECTION-----------------------------------------#
 def print_board(tictactoe_board): # Print board after any update (instert, win, etc)
     for item in tictactoe_board:
         print(" ".join(map(str, item)))
@@ -42,15 +42,21 @@ def print_board(tictactoe_board): # Print board after any update (instert, win, 
 
 print(insert_player_choice(tictactoe_board, '2', 'X'))
 
-'''
+#-----------------------------------------MAIN SECTION-----------------------------------------#
 player_turn = False
-player_choice = input('Where would you like to place your symbol?: ')
 anybody_won = False
+valid_input = False
+
 while not anybody_won:
-    if player_turn == False:
-        insert_player_choice(tictactoe_board, player_choice, 'X')
-        anybody_won = win
+    if not player_turn:
+        while not valid_input:
+            player_choice = input('Where would you like to place your symbol?: ')
+            valid = input(insert_player_choice(tictactoe_board, player_choice, 'X'))
+        anybody_won = win()
     else:
-        insert_player_choice(tictactoe_board, player_choice, 'O')
-        anybody_won = win
-'''
+        while not valid_input:
+            player_choice = input('Where would you like to place your symbol?: ')
+            valid = input(insert_player_choice(tictactoe_board, player_choice, 'O'))
+        anybody_won = win()
+        player_turn = True
+#-----------------------------------------MAIN SECTION-----------------------------------------#
