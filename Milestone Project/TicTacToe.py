@@ -3,6 +3,7 @@ tictactoe_board = [['1','2','3'],
                    ['7','8','9']]
 
 def win(*args): # check if any player won after inserting a 'X' or 'O' in the board
+    #(board[7] == board[8] == board[9] == marker)
     return True
 
 def position_available(*args): # Given a position on the board, check if that position is available to be inserted or if its already taken
