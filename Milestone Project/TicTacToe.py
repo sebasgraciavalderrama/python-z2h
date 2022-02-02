@@ -2,9 +2,7 @@ tictactoe_board = [['1','2','3'],
                    ['4','5','6'],
                    ['7','8','9']]
 
-
 def tie(player=''): # Check if at any given point in time the result of the match is a tie, returns True if tie
-
     print('Match has resulted with a tie!')
     return True
 
@@ -86,10 +84,9 @@ def want_to_play_again():
         elif decision == 'N':
             return True
 
-def clean_board(tictactoe_board):
-    tictactoe_board = [['1','2','3'],
-                       ['4','5','6'],
-                       ['7','8','9']]
+def clean_board():
+    pass
+
 #-----------------------------------------MAIN SECTION - BEGIN-----------------------------------------#
 
 # Initialization of variables
@@ -139,6 +136,9 @@ while not anybody_won: # While loop to play until any player won or tied match
             player_turn = False
             anybody_won = False
             valid_input = False
+            '''TODO:
+                Find a way to clean/reset the board
+            '''
             clean_board(tictactoe_board)
             print("Welcome again to Sebastian's poorly-optimized-TicTacToe game!!!")
             # If statement to define which player 'X' or 'Y' gets to play first.
