@@ -84,7 +84,7 @@ def want_to_play_again():
         elif decision == 'N':
             return True
 
-def clean_board():
+def clean_board(tictactoe_board=''):
     pass
 
 #-----------------------------------------MAIN SECTION - BEGIN-----------------------------------------#
