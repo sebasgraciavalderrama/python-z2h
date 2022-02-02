@@ -2,24 +2,45 @@ tictactoe_board = [['1','2','3'],
                    ['4','5','6'],
                    ['7','8','9']]
 
-'''
-win_position_vertical_1 = {(0,0),(1,0),(2,0)}
-win_position_vertical_2 = {(0,1),(1,1),(2,1)}
-win_position_vertical_3 = {(0,2),(1,2),(2,2)}
-win_position_horizontal_1 = {(0,0),(0,1),(0,2)}
-win_position_horizontal_2 = {(1,0),(1,1),(0,2)}
-win_position_horizontal_3 = {(2,0),(2,1),(2,2)}
-win_position_cross_1 = {(0,0),(1,1),(2,2)}
-win_position_cross_1 = {(0,2),(1,1),(2,0)}
-'''
 def tie(player=''): # Check if at any given point in time the result of the match is a tie, returns True if tie
     print('Match has resulted with a tie!')
     return True
 
-def win(player=''): # Check if any player won after inserting a 'X' or 'O' in the board, returns True if any player has won
-    #(board[7] == board[8] == board[9] == marker)
-    print(f'Player {player} has won!')
-    return True
+def win(tictactoe_board, player=''): # Check if any player won after inserting a 'X' or 'O' in the board, returns True if any player has won
+    if tictactoe_board[0][0] == tictactoe_board[0][1] == tictactoe_board[2][0] == player:
+        # win_position_vertical_1 = {(0,0),(1,0),(2,0)}
+        print(f'Player {player} has won!')
+        return True
+    if tictactoe_board[0][1] == tictactoe_board[1][1] == tictactoe_board[2][1] == player:
+        # win_position_vertical_2 = {(0,1),(1,1),(2,1)}
+        print(f'Player {player} has won!')
+        return True
+    if tictactoe_board[0][2] == tictactoe_board[1][2] == tictactoe_board[2][2] == player:
+        # win_position_vertical_3 = {(0,2),(1,2),(2,2)}
+        print(f'Player {player} has won!')
+        return True
+    if tictactoe_board[0][0] == tictactoe_board[0][1] == tictactoe_board[0][2] == player:
+        # win_position_horizontal_1 = {(0,0),(0,1),(0,2)}
+        print(f'Player {player} has won!')
+        return True
+    if tictactoe_board[1][0] == tictactoe_board[1][1] == tictactoe_board[0][2] == player:
+        # win_position_horizontal_2 = {(1,0),(1,1),(0,2)}
+        print(f'Player {player} has won!')
+        return True
+    if tictactoe_board[2][0] == tictactoe_board[2][1] == tictactoe_board[2][2] == player:
+        # win_position_horizontal_3 = {(2,0),(2,1),(2,2)}
+        print(f'Player {player} has won!')
+        return True
+    if tictactoe_board[0][0] == tictactoe_board[1][1] == tictactoe_board[2][2] == player:
+        # win_position_cross_1 = {(0,0),(1,1),(2,2)}
+        print(f'Player {player} has won!')
+        return True
+    if tictactoe_board[0][2] == tictactoe_board[1][1] == tictactoe_board[2][0] == player:
+        # win_position_cross_2 = {(0,2),(1,1),(2,0)}
+        print(f'Player {player} has won!')
+        return True
+    return False
+
 
 def position_available(*args): # Given a position on the board, check if that position is available to be inserted or if its already taken
     return any (args in x for x in tictactoe_board)
