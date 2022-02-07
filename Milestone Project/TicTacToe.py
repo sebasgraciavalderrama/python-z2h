@@ -2,9 +2,11 @@ tictactoe_board = [['1','2','3'],
                    ['4','5','6'],
                    ['7','8','9']]
 
-def tie(player=''): # Check if at any given point in time the result of the match is a tie, returns True if tie
-    print('Match has resulted with a tie!')
-    return True
+def tie(number_of_plays): # Check if at any given point in time the result of the match is a tie, returns True if tie
+    if number_of_plays >= 9:
+        print('Match has resulted with a tie!')
+        return True
+    return False
 
 def win(tictactoe_board, player=''): # Check if any player won after inserting a 'X' or 'O' in the board, returns True if any player has won
     if tictactoe_board[0][0] == tictactoe_board[1][0] == tictactoe_board[2][0] == player:
@@ -93,6 +95,7 @@ def clean_board(tictactoe_board):
 player_turn = False
 anybody_won = False
 valid_input = False
+number_of_plays = 0
 print("Welcome to Sebastian's poorly-optimized-TicTacToe game!!!")
 
 # If statement to define which player 'X' or 'Y' gets to play first.
@@ -116,6 +119,7 @@ while not anybody_won: # While loop to play until any player won or tied match
                 valid_input = True
                 player_turn = True
                 anybody_won = win(tictactoe_board, player_symbol)
+                number_of_plays += 1
     elif player_turn:
         player_symbol = 'O'
         while not valid_input:
@@ -128,6 +132,11 @@ while not anybody_won: # While loop to play until any player won or tied match
                 valid_input = True
                 player_turn = False
                 anybody_won = win(tictactoe_board, player_symbol)
+                number_of_plays += 1
+    # For each player insertion, we increase numer_of_plays by 1, after each insertion we
+    # call the tie() function which returns True if after 9 plays nobody won (tie)
+    if tie(number_of_plays):
+        anybody_won = True
 
     if anybody_won:
         # Would you like to play again?
