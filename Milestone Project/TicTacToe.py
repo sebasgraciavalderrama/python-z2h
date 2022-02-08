@@ -142,17 +142,20 @@ while not anybody_won: # While loop to play until any player won or tied match
         # Would you like to play again?
         anybody_won =  want_to_play_again()
         if not anybody_won:
+            # Reset all control variables to their original state
             player_turn = False
             anybody_won = False
             valid_input = False
-            '''TODO:
-                Find a way to clean/reset the board
-                clean_board(tictactoe_board)
-                tictactoe_board = [['1','2','3'],
+            number_of_plays = 0
+            # Reset the board, I guess I could get rid of the None assignment and just restart the board in
+            # another function with the original values...
+            # whatever it works and don't have much time left to work on this.
+            tictactoe_board = None
+            tictactoe_board = [['1','2','3'],
                                ['4','5','6'],
                                ['7','8','9']]
-            '''
-            print("Welcome again tozgit Sebastian's poorly-optimized-TicTacToe game!!!")
+
+            print("Welcome again to Sebastian's poorly-optimized-TicTacToe game!!!")
             # If statement to define which player 'X' or 'Y' gets to play first.
             decision = who_goes_first()
             if decision == 'X':
