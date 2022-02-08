@@ -47,11 +47,6 @@ def win(tictactoe_board, player=''):
         return True
     return False
 
-def position_available(*args):
-    # Given a position on the board, check if that position
-    # is available to be inserted or if its already taken
-    return any (args in x for x in tictactoe_board)
-
 def who_goes_first():
     # Define who goes firts: 'X' or 'O', returns 'X' or ? based on user input
     choice = 'WRONG'
@@ -60,7 +55,7 @@ def who_goes_first():
         if decision in ('X', 'O'):
             return decision
 
-def insert_player_choice (tictactoe_board, player_choice, player = ''):
+def insert_player_choice(tictactoe_board, player_choice, player = ''):
     # Inserts player symbol given a position of
     # the board, returns True if insertion was successful
     my_tuple = get_index_of_player_choice(tictactoe_board, player_choice)
@@ -98,81 +93,83 @@ def want_to_play_again():
         elif decision == 'N':
             return True
 
-#-----------------------------------------MAIN SECTION - BEGIN-----------------------------------------#
 
-# Initialization of variables
-player_turn = False
-anybody_won = False
-valid_input = False
-number_of_plays = 0
-print("Welcome to Sebastian's poorly-optimized-TicTacToe game!!!")
+if __name__ == '__main__':
+    #-----------------------------------------MAIN SECTION - BEGIN-----------------------------------------#
 
-# If statement to define which player 'X' or 'Y' gets to play first.
-decision = who_goes_first()
-if decision == 'X':
+    # Initialization of variables
     player_turn = False
-else:
-    player_turn = True
-
-while not anybody_won: # While loop to play until any player won or tied match
+    anybody_won = False
     valid_input = False
-    if not player_turn: # If statement to control players turn
-        player_symbol = 'X'
-        while not valid_input:
-            # While loop to get users 1)input 2)insertion 3)validation of win or tie
-            print('Your turn X...')
-            print_board(tictactoe_board)
-            player_choice = input('Where would you like to place your symbol?: ')
-            valid = insert_player_choice(tictactoe_board, player_choice, player_symbol)
-            if valid:
-                # Insertion was successful, next player can play
-                valid_input = True
-                player_turn = True
-                anybody_won = win(tictactoe_board, player_symbol)
-                number_of_plays += 1
-    elif player_turn:
-        player_symbol = 'O'
-        while not valid_input:
-            print('Your turn O...')
-            print_board(tictactoe_board)
-            player_choice = input('Where would you like to place your symbol?: ')
-            valid = insert_player_choice(tictactoe_board, player_choice, player_symbol)
-            if valid:
-                # Insertion was successful, next player can play
-                valid_input = True
+    number_of_plays = 0
+    print("Welcome to Sebastian's poorly-optimized-TicTacToe game!!!")
+
+    # If statement to define which player 'X' or 'Y' gets to play first.
+    decision = who_goes_first()
+    if decision == 'X':
+        player_turn = False
+    else:
+        player_turn = True
+
+    while not anybody_won: # While loop to play until any player won or tied match
+        valid_input = False
+        if not player_turn: # If statement to control players turn
+            player_symbol = 'X'
+            while not valid_input:
+                # While loop to get users 1)input 2)insertion 3)validation of win or tie
+                print('Your turn X...')
+                print_board(tictactoe_board)
+                player_choice = input('Where would you like to place your symbol?: ')
+                valid = insert_player_choice(tictactoe_board, player_choice, player_symbol)
+                if valid:
+                    # Insertion was successful, next player can play
+                    valid_input = True
+                    player_turn = True
+                    anybody_won = win(tictactoe_board, player_symbol)
+                    number_of_plays += 1
+        elif player_turn:
+            player_symbol = 'O'
+            while not valid_input:
+                print('Your turn O...')
+                print_board(tictactoe_board)
+                player_choice = input('Where would you like to place your symbol?: ')
+                valid = insert_player_choice(tictactoe_board, player_choice, player_symbol)
+                if valid:
+                    # Insertion was successful, next player can play
+                    valid_input = True
+                    player_turn = False
+                    anybody_won = win(tictactoe_board, player_symbol)
+                    number_of_plays += 1
+        # For each player insertion, we increase numer_of_plays by 1, after each insertion we
+        # call the tie() function which returns True if after 9 plays nobody won (tie)
+        if tie(number_of_plays):
+            anybody_won = True
+
+        if anybody_won:
+            # Would you like to play again?
+            anybody_won =  want_to_play_again()
+            if not anybody_won:
+                # Reset all control variables to their original state
                 player_turn = False
-                anybody_won = win(tictactoe_board, player_symbol)
-                number_of_plays += 1
-    # For each player insertion, we increase numer_of_plays by 1, after each insertion we
-    # call the tie() function which returns True if after 9 plays nobody won (tie)
-    if tie(number_of_plays):
-        anybody_won = True
+                anybody_won = False
+                valid_input = False
+                number_of_plays = 0
+                # Reset the board, I guess I could get rid of the None
+                # assignment and just restart the board in
+                # another function with the original values...
+                # whatever it works and don't have much time left to work on this.
+                tictactoe_board = None
+                tictactoe_board = [['1','2','3'],
+                                   ['4','5','6'],
+                                   ['7','8','9']]
 
-    if anybody_won:
-        # Would you like to play again?
-        anybody_won =  want_to_play_again()
-        if not anybody_won:
-            # Reset all control variables to their original state
-            player_turn = False
-            anybody_won = False
-            valid_input = False
-            number_of_plays = 0
-            # Reset the board, I guess I could get rid of the None
-            # assignment and just restart the board in
-            # another function with the original values...
-            # whatever it works and don't have much time left to work on this.
-            tictactoe_board = None
-            tictactoe_board = [['1','2','3'],
-                               ['4','5','6'],
-                               ['7','8','9']]
+                print("Welcome again to Sebastian's poorly-optimized-TicTacToe game!!!")
+                # If statement to define which player 'X' or 'Y' gets to play first.
+                decision = who_goes_first()
+                if decision == 'X':
+                    player_turn = False
+                else:
+                    player_turn = True
 
-            print("Welcome again to Sebastian's poorly-optimized-TicTacToe game!!!")
-            # If statement to define which player 'X' or 'Y' gets to play first.
-            decision = who_goes_first()
-            if decision == 'X':
-                player_turn = False
-            else:
-                player_turn = True
-
-print("Thank you for playing!, See you soon...")
-#-----------------------------------------MAIN SECTION - END-----------------------------------------#
+    print("Thank you for playing!, See you soon...")
+    #-----------------------------------------MAIN SECTION - END-----------------------------------------#
