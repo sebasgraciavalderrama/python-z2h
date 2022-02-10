@@ -28,4 +28,4 @@ jobs:
         python -m pip install --upgrade pip
         pip install pytest
     - name: Run pytest tests
-      run: pytest Milestone\ Project\ pt2/BlackJack/Tests/test*
+      run: pytest Tests/test*
