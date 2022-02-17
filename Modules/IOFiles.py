@@ -1,5 +1,4 @@
 import os
-import shutil
 import send2trash
 
 f = open('practice.txt', 'w+')
