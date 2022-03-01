@@ -1,6 +1,6 @@
 import re
 
-text = "The agent's phone number is 408-555-7777. Call soon!"
+text = "The agent's phone number is. Call soon!"
 phone = re.search(r'\d{3}-\d{3}-\d{4}', text)
 print(phone)
 print(phone.group())

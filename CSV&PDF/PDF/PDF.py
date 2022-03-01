@@ -20,7 +20,7 @@ pdf_writer.write(pdf_output)
 f.close()
 pdf_output.close()
 
-f = open('Working_Business_Proposal.pdf','rb')
+f = open('Working_Business_Proposal.pdf', 'rb')
 pdf_text = []
 pdf_reader = PyPDF2.PdfFileReader(f)
 
