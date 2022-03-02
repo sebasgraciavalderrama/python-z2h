@@ -15,7 +15,7 @@ for item in data_lines:
         # If the regex does not return a valid find (any character different from a number)
         # we move on until we find the next valid find.
         # KEEP IN MIND THIS DOES NOT ALLOW NUMBERS
-        # TO BE IN THE URL, THEREFOR ONLY WORKS FOR URL'S WITH NO NUMBERS.
+        # TO BE IN THE URL, THEREFORE ONLY WORKS FOR URL'S WITH NO NUMBERS.
         if char is not None:
             # We add the character to the list
             url_by_char.append(character)
